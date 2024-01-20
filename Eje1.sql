@@ -80,3 +80,31 @@ WHERE precio >= 5
 SELECT * FROM public.clientes
 WHERE name ILIKE 'J%'
 
+/*16. Realizar una consulta que muestre el nombre del cliente y el total de pedidos
+realizados por cada cliente.*/
+SELECT * FROM public.pedidos
+INNER JOIN public.clientes
+ON clientes.id = pedidos.cliente_id
+
+/*17. Realizar una consulta que muestre el nombre del producto y la cantidad total de
+pedidos de ese producto.*7*/
+SELECT * FROM public.pedidos
+INNER JOIN public.productos
+ON productos.nombre = pedidos.producto
+
+/*18. Agregar una columna llamada "fecha" a la tabla "Pedidos" de tipo fecha*/
+ALTER TABLE public.pedidos 
+ADD COLUMN fecha DATE 
+
+/*19. Agregar una clave externa a la tabla "Pedidos" que haga referencia a la tabla
+"Productos" en la columna "producto".*/
+/*NO CONSIGO HACERLO, ALGO FALLA*/
+ALTER TABLE public.pedidos 
+ALTER COLUMN producto TYPE FK_nombre FOREIGN KEY (nombre) REFERENCES pedidos (producto)
+
+/*20. Realizar una consulta que muestre los nombres de los clientes, los nombres de
+los productos y las cantidades de los pedidos donde coincida la clave externa*/
+SELECT * FROM public.clientes
+INNER JOIN public.pedidos
+INNER JOIN public.productos
+ON pedidos.producto = producto.nombre
