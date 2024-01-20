@@ -39,4 +39,44 @@ WHERE id = 1
 
 /*. Crear una tabla llamada "Productos" con las columnas: id (entero, clave
 primaria), nombre (texto) y precio (decimal).*/
+CREATE TABLE IF NOT EXISTS Productos(
+id SERIAL PRIMARY KEY,
+nombre VARCHAR(255),
+precio NUMERIC(6,2)
+)
+
+/*0. Insertar varios productos en la tabla "Productos" con diferentes valores.*/
+INSERT INTO public.productos(nombre, precio)
+VALUES ('Camiseta', 20),('Pantalon', 30),('Zapatillas', 25),('Calcetines', 10),('Guantes', 12),('Abrigo', 50)
+
+/*11. Consultar todos los clientes de la tabla "Clientes"*/
+SELECT * FROM public.clientes 
+
+/*12. Consultar todos los pedidos de la tabla "Pedidos" junto con los nombres de los
+clientes correspondientes.*/. /*primero añado clientes y pedidos, ya que no tenía*/
+INSERT INTO public.clientes(name, email)
+VALUES ('Julian', 'julian@email.com'),('Julian', 'julian@email.com'),('Gonzalo', 'gonzalo@email.com')
+
+INSERT INTO public.pedidos(cliente_id, producto, cantidad)
+VALUES (4, 'Abrigo', 1),(3, 'Guante', 1)
+
+SELECT * FROM public.pedidos 
+INNER JOIN public.clientes
+ON pedidos.cliente_id = clientes.id
+
+/*13. Consultar los productos de la tabla "Productos" cuyo precio sea mayor a $50.*/
+/*He puesto 30 y no 50, ya que en mi tabla no tenia valores mayores de 50*/
+SELECT * FROM public.productos 
+WHERE precio > 30
+
+/*14. Consultar los pedidos de la tabla "Pedidos" que tengan una cantidad mayor o
+igual a 5.*/
+SELECT * FROM public.productos 
+WHERE precio >= 5
+
+/*15. Consultar los clientes de la tabla "Clientes" cuyo nombre empiece con la letra
+"A".*/
+/*he puesto la letra J, ya que no tengo nombres con a*/
+SELECT * FROM public.clientes
+WHERE name ILIKE 'J%'
 
